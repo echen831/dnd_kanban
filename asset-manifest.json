@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/dnd_kanban/static/css/main.f9318060.chunk.css",
+    "main.js": "/dnd_kanban/static/js/main.22c1e169.chunk.js",
+    "main.js.map": "/dnd_kanban/static/js/main.22c1e169.chunk.js.map",
+    "runtime-main.js": "/dnd_kanban/static/js/runtime-main.50b1d33f.js",
+    "runtime-main.js.map": "/dnd_kanban/static/js/runtime-main.50b1d33f.js.map",
+    "static/js/2.80158a21.chunk.js": "/dnd_kanban/static/js/2.80158a21.chunk.js",
+    "static/js/2.80158a21.chunk.js.map": "/dnd_kanban/static/js/2.80158a21.chunk.js.map",
+    "index.html": "/dnd_kanban/index.html",
+    "precache-manifest.213c29dd569176a3b5fcc52a9df59ae8.js": "/dnd_kanban/precache-manifest.213c29dd569176a3b5fcc52a9df59ae8.js",
+    "service-worker.js": "/dnd_kanban/service-worker.js",
+    "static/css/main.f9318060.chunk.css.map": "/dnd_kanban/static/css/main.f9318060.chunk.css.map",
+    "static/js/2.80158a21.chunk.js.LICENSE.txt": "/dnd_kanban/static/js/2.80158a21.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.50b1d33f.js",
+    "static/js/2.80158a21.chunk.js",
+    "static/css/main.f9318060.chunk.css",
+    "static/js/main.22c1e169.chunk.js"
+  ]
+}
