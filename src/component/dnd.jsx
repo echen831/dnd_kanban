@@ -1,18 +1,19 @@
 import React, { useState, useRef } from 'react';
 import { Item } from './item';
+import { AddItem } from './addItem'
 
 //[Applied] [Phone Screen] [On site] [Offered] [Accepted] [Rejected]
 
 const INITIALDATA = [
-    { title: 'Applied', items: [{ name: 'Eric One', email: 'e1@gmail.com', comment: '' }] },
-    { title: 'Phone Screen', items: [{ name: 'Eric Two', email: 'e2@gmail.com', comment: '' }] },
+    { title: 'Applied', items: [{ name: 'Eric One', email: 'e1@gmail.com', comments: ["eric is great", "eric is awesome"] }] },
+    { title: 'Phone Screen', items: [{ name: 'Eric Two', email: 'e2@gmail.com', comments: [] }] },
     { title: 'On site', items: [] },
     { title: 'Offered', items: [] },
     { title: 'Accepted', items: [] },
     { title: 'Rejected', items: [] },
 ]
 
-export const DND = (props) => {
+export const DND = () => {
 
     const [ list, setList ] = useState(INITIALDATA);
     const [dragging, setDragging] = useState(false);
@@ -50,16 +51,33 @@ export const DND = (props) => {
         dragNode.current = null;
     }
 
-    const addItems = (col) => {
+    const addItems = (col, data) => {
         let newList = [...list];
-        newList[col].items.push({ name: '', email: '', comment: '' });
-        setList(newList)
+
+        if(data.name.trim() !== "" && data.email.trim() !== "") {
+            newList[col].items.push({ name: data.name, email: data.email, comments: [] });
+            setList(newList)
+        }
 
         // setList(oldList => {
         //     let newList = JSON.parse(JSON.stringify(oldList))
         //     newList[col].items.push({ name: '', email: '', phone: '' })
         //     return newList
         // })
+    }
+
+    const addComment = (comment, params) => {
+        let newList = [...list];
+        newList[params.grpIdx].items[params.itemIdx].comments.push(comment);
+        setList(newList);
+    }
+
+    const removeComment = (params) => {
+        let newList = [...list];
+        newList[params.grpIdx].items[params.itemIdx].comments = 
+            newList[params.grpIdx].items[params.itemIdx].comments.slice(0,params.commentIdx)
+            .concat(newList[params.grpIdx].items[params.itemIdx].comments.slice(params.commentIdx + 1))
+        setList(newList);
     }
 
 
@@ -87,12 +105,14 @@ export const DND = (props) => {
 
     const update = (field, text, params) => {
 
-
-        setList(oldList => {
-            let newList = JSON.parse(JSON.stringify(oldList))
-            newList[params.grpIdx].items[params.itemIdx][field] = text
-            return newList
-        })
+        let newList = [...list];
+        newList[params.grpIdx].items[params.itemIdx][field] = text;
+        setList(newList);
+        // setList(oldList => {
+        //     let newList = JSON.parse(JSON.stringify(oldList))
+        //     newList[params.grpIdx].items[params.itemIdx][field] = text
+        //     return newList
+        // })
         // textInput.current.value = ''
         // setEditTitle(false)
     }
@@ -124,6 +144,8 @@ export const DND = (props) => {
                                       itemIdx={itemIdx}
                                       update={update}
                                       removeItem={removeItem}
+                                      addComment={addComment}
+                                      removeComment={removeComment}
                                 />
                                 {/* <div>
                                     <p>{item.title.length ? item.title : 'Name'}</p>
@@ -136,7 +158,7 @@ export const DND = (props) => {
                                 </div> */}
                             </div>
                         )) : null}
-                        {grp.title === 'Applied' ? <button onClick={() => addItems(grpIdx)}>Add</button> : null}
+                        {grp.title === 'Applied' ? <AddItem grpIdx={grpIdx} addItems={addItems}/> : null}
                         
                     </div>
                 ))}

@@ -43,7 +43,7 @@ body {
     min-height: 150px;
     border-radius: 5px;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .dnd-item:not(:last-of-type) {
