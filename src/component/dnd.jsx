@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Item } from './item';
 
 //[Applied] [Phone Screen] [On site] [Offered] [Accepted] [Rejected]
 
@@ -15,11 +16,11 @@ export const DND = (props) => {
 
     const [ list, setList ] = useState(INITIALDATA);
     const [dragging, setDragging] = useState(false);
-    const [ editTitle, setEditTitle ] = useState(false);
+    // const [ editTitle, setEditTitle ] = useState(false);
 
     const dragItem = useRef();
     const dragNode = useRef();
-    const textInput = useRef();
+    // const textInput = useRef();
 
     const handleDragStart = (e, params) => {
         dragItem.current = params;
@@ -52,7 +53,7 @@ export const DND = (props) => {
     const addItems = (col) => {
         setList(oldList => {
             let newList = JSON.parse(JSON.stringify(oldList))
-            newList[col].items.push({ title: '', details: '' })
+            newList[col].items.push({ name: '', email: '', phone: '' })
             return newList
         })
     }
@@ -67,15 +68,28 @@ export const DND = (props) => {
         })
     }
 
-    const update = (text, params) => {
-        setList(oldList => {
-            let newList = JSON.parse(JSON.stringify(oldList))
-            newList[params.grpIdx].items[params.itemIdx].title = text
-            return newList
-        })
-        textInput.current.value = ''
-        setEditTitle(false)
+    const update = (data, params) => {
+        let newList = [...list]
+        newList[params.grpIdx].items[params.itemIdx] = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone
+        }
+
+        setList(newList);
     }
+
+    // const update = (field, text, params) => {
+
+
+    //     setList(oldList => {
+    //         let newList = JSON.parse(JSON.stringify(oldList))
+    //         newList[params.grpIdx].items[params.itemIdx][field] = text
+    //         return newList
+    //     })
+    //     // textInput.current.value = ''
+    //     // setEditTitle(false)
+    // }
 
     const getStyles = (params) => {
         const currentItem = dragItem.current
@@ -87,13 +101,11 @@ export const DND = (props) => {
 
     return (
         <div className='dnd-header'>
-            <div className='drag-n-drop'>
+            <div className='drag-n-drop' id={dragging ? 'dragging' : ''}>
                 {list.map((grp, grpIdx) => (
-                    <div key={grpIdx}
-                        className='dnd-group'
-                        draggable
-                        onDragEnter={dragging && !grp.items.length ? (e) => handleDragEnter(e, { grpIdx, itemIdx: 0 }) : null}
-                    >
+                    <div key={grpIdx} 
+                         className='dnd-group'
+                         onDragEnter={dragging && !grp.items.length ? (e) => handleDragEnter(e, { grpIdx, itemIdx: 0 }) : null}>
                         <div className='group-title'>{grp.title}</div>
                         {grp.items ? grp.items.map((item, itemIdx) => (
                             <div draggable
@@ -101,19 +113,25 @@ export const DND = (props) => {
                                 onDragEnter={dragging ? (e) => { handleDragEnter(e, { grpIdx, itemIdx }) } : null}
                                 key={itemIdx}
                                 className={dragging ? getStyles({ grpIdx, itemIdx }) : 'dnd-item'}>
-
-                                <div>
-                                    <p>{item.title.length ? item.title : 'Title'}</p>
+                                <Item item={item}
+                                      grpIdx={grpIdx}
+                                      itemIdx={itemIdx}
+                                      update={update}
+                                      removeItem={removeItem}
+                                />
+                                {/* <div>
+                                    <p>{item.title.length ? item.title : 'Name'}</p>
                                     <button onClick={() => setEditTitle(!editTitle)}>+</button>
                                     <div id={!editTitle ? 'hide' : ''}>
                                         <input type="text" ref={textInput} />
                                         <button onClick={() => update(textInput.current.value, { grpIdx, itemIdx })}>Update</button>
                                     </div>
                                     <button onClick={() => removeItem({ grpIdx, itemIdx })}>Remove</button>
-                                </div>
+                                </div> */}
                             </div>
                         )) : null}
-                        <button onClick={() => addItems(grpIdx)}>Add</button>
+                        {grp.title === 'Applied' ? <button onClick={() => addItems(grpIdx)}>Add</button> : null}
+                        
                     </div>
                 ))}
             </div>

@@ -18,13 +18,14 @@ body {
   height: 100%;
   /* grid-template-columns: repeat(auto-fill, 300px); */
   align-items: start;
-  cursor: grabbing;
+  cursor: grab;
 }
 
 .dnd-group {
     background-color: springgreen;
     border-radius: 5px;
     padding: .5rem;
+    min-width: 11rem;
 }
 
 .group-title {
@@ -61,6 +62,30 @@ body {
 #hide {
     display: none;
 }
+
+#dragging {
+  cursor: grabbing;
+}
+
+.item-container {
+  font-size: small;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-container div {
+  display: flex;
+  justify-content: space-between;
+  min-width: 10em;
+}
+
+.item-container input {
+  width: 10em;
+}
+
 
 
 
