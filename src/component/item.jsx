@@ -73,15 +73,15 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx}) => {
 
             <div className="edit-container" id={!edit ? 'hide' : ''}>
                 <div >
-                    <input type="text" placeholder="Name" value={name} ref={nameInput} onChange={(e) => handleChange(e, "name")}/>
+                    <input type="text" placeholder="Name" ref={nameInput} onChange={(e) => handleChange(e, "name")}/>
                     <button onClick={() => handleUpdate("name", nameInput.current.value, { grpIdx, itemIdx })}>Update</button>
                 </div>
                 <div >
-                    <input type="text" placeholder="Email" value={email} ref={emailInput} onChange={(e) => handleChange(e, "email")}/>
+                    <input type="text" placeholder="Email" ref={emailInput} onChange={(e) => handleChange(e, "email")}/>
                     <button onClick={() => handleUpdate("email", emailInput.current.value, { grpIdx, itemIdx })}>Update</button>
                 </div>
                 <div >
-                    <textarea type="text" placeholder="Comments" value={comment} ref={commentInput} onChange={(e) => handleChange(e, "comment")} />
+                    <textarea type="text" placeholder="Comments" ref={commentInput} onChange={(e) => handleChange(e, "comment")} />
                     <button onClick={() => handleUpdate("comment", commentInput.current.value, { grpIdx, itemIdx })}>Update</button>
                 </div>
                 <div>

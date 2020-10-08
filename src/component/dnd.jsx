@@ -4,8 +4,8 @@ import { Item } from './item';
 //[Applied] [Phone Screen] [On site] [Offered] [Accepted] [Rejected]
 
 const INITIALDATA = [
-    { title: 'Applied', items: [{ name: 'Eric Chen', email: 'e1@gmail.com', comment: '' }] },
-    { title: 'Phone Screen', items: [] },
+    { title: 'Applied', items: [{ name: 'Eric One', email: 'e1@gmail.com', comment: '' }] },
+    { title: 'Phone Screen', items: [{ name: 'Eric Two', email: 'e2@gmail.com', comment: '' }] },
     { title: 'On site', items: [] },
     { title: 'Offered', items: [] },
     { title: 'Accepted', items: [] },
