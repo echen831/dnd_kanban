@@ -17,11 +17,10 @@ export const DND = () => {
 
     const [ list, setList ] = useState(INITIALDATA);
     const [dragging, setDragging] = useState(false);
-    // const [ editTitle, setEditTitle ] = useState(false);
 
     const dragItem = useRef();
     const dragNode = useRef();
-    // const textInput = useRef();
+
 
     const handleDragStart = (e, params) => {
         dragItem.current = params;
@@ -58,12 +57,6 @@ export const DND = () => {
             newList[col].items.push({ name: data.name, email: data.email, comments: [] });
             setList(newList)
         }
-
-        // setList(oldList => {
-        //     let newList = JSON.parse(JSON.stringify(oldList))
-        //     newList[col].items.push({ name: '', email: '', phone: '' })
-        //     return newList
-        // })
     }
 
     const addComment = (comment, params) => {
@@ -88,36 +81,14 @@ export const DND = () => {
         let newList = [...list];
         newList[params.grpIdx].items = newList[params.grpIdx].items.slice(0, params.itemIdx).concat(newList[params.grpIdx].items.slice(params.itemIdx + 1))
         setList(newList)
-        // setList(oldList => {
-        //     let newList = JSON.parse(JSON.stringify(oldList))
-        //     newList[params.grpIdx].items = newList[params.grpIdx].items.slice(0, params.itemIdx).concat(newList[params.grpIdx].items.slice(params.itemIdx + 1))
-        //     return newList
-        // })
     }
 
-    // const update = (data, params) => {
-    //     let newList = [...list];
-    //     newList[params.grpIdx].items[params.itemIdx] = {
-    //         name: data.name,
-    //         email: data.email,
-    //         phone: data.phone
-    //     }
-
-    //     setList(newList);
-    // }
 
     const update = (field, text, params) => {
 
         let newList = [...list];
         newList[params.grpIdx].items[params.itemIdx][field] = text;
         setList(newList);
-        // setList(oldList => {
-        //     let newList = JSON.parse(JSON.stringify(oldList))
-        //     newList[params.grpIdx].items[params.itemIdx][field] = text
-        //     return newList
-        // })
-        // textInput.current.value = ''
-        // setEditTitle(false)
     }
 
     const getStyles = (params) => {
@@ -150,15 +121,7 @@ export const DND = () => {
                                       addComment={addComment}
                                       removeComment={removeComment}
                                 />
-                                {/* <div>
-                                    <p>{item.title.length ? item.title : 'Name'}</p>
-                                    <button onClick={() => setEditTitle(!editTitle)}>+</button>
-                                    <div id={!editTitle ? 'hide' : ''}>
-                                        <input type="text" ref={textInput} />
-                                        <button onClick={() => update(textInput.current.value, { grpIdx, itemIdx })}>Update</button>
-                                    </div>
-                                    <button onClick={() => removeItem({ grpIdx, itemIdx })}>Remove</button>
-                                </div> */}
+
                             </div>
                         )) : null}
                         {grp.title === 'Applied' ? <AddItem grpIdx={grpIdx} addItems={addItems}/> : null}
