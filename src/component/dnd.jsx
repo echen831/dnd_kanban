@@ -4,7 +4,7 @@ import { Item } from './item';
 //[Applied] [Phone Screen] [On site] [Offered] [Accepted] [Rejected]
 
 const INITIALDATA = [
-    { title: 'Applied', items: [] },
+    { title: 'Applied', items: [{ name: 'Eric Chen', email: 'e1@gmail.com', comment: '' }] },
     { title: 'Phone Screen', items: [] },
     { title: 'On site', items: [] },
     { title: 'Offered', items: [] },
@@ -51,45 +51,51 @@ export const DND = (props) => {
     }
 
     const addItems = (col) => {
-        setList(oldList => {
-            let newList = JSON.parse(JSON.stringify(oldList))
-            newList[col].items.push({ name: '', email: '', phone: '' })
-            return newList
-        })
+        let newList = [...list];
+        newList[col].items.push({ name: '', email: '', comment: '' });
+        setList(newList)
+
+        // setList(oldList => {
+        //     let newList = JSON.parse(JSON.stringify(oldList))
+        //     newList[col].items.push({ name: '', email: '', phone: '' })
+        //     return newList
+        // })
     }
 
 
     const removeItem = (params) => {
+        let newList = [...list];
+        newList[params.grpIdx].items = newList[params.grpIdx].items.slice(0, params.itemIdx).concat(newList[params.grpIdx].items.slice(params.itemIdx + 1))
+        setList(newList)
+        // setList(oldList => {
+        //     let newList = JSON.parse(JSON.stringify(oldList))
+        //     newList[params.grpIdx].items = newList[params.grpIdx].items.slice(0, params.itemIdx).concat(newList[params.grpIdx].items.slice(params.itemIdx + 1))
+        //     return newList
+        // })
+    }
+
+    // const update = (data, params) => {
+    //     let newList = [...list];
+    //     newList[params.grpIdx].items[params.itemIdx] = {
+    //         name: data.name,
+    //         email: data.email,
+    //         phone: data.phone
+    //     }
+
+    //     setList(newList);
+    // }
+
+    const update = (field, text, params) => {
+
+
         setList(oldList => {
             let newList = JSON.parse(JSON.stringify(oldList))
-            newList[params.grpIdx].items = newList[params.grpIdx].items.slice(0, params.itemIdx).concat(newList[params.grpIdx].items.slice(params.itemIdx + 1))
+            newList[params.grpIdx].items[params.itemIdx][field] = text
             return newList
-
         })
+        // textInput.current.value = ''
+        // setEditTitle(false)
     }
-
-    const update = (data, params) => {
-        let newList = [...list]
-        newList[params.grpIdx].items[params.itemIdx] = {
-            name: data.name,
-            email: data.email,
-            phone: data.phone
-        }
-
-        setList(newList);
-    }
-
-    // const update = (field, text, params) => {
-
-
-    //     setList(oldList => {
-    //         let newList = JSON.parse(JSON.stringify(oldList))
-    //         newList[params.grpIdx].items[params.itemIdx][field] = text
-    //         return newList
-    //     })
-    //     // textInput.current.value = ''
-    //     // setEditTitle(false)
-    // }
 
     const getStyles = (params) => {
         const currentItem = dragItem.current
