@@ -62,12 +62,12 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx}) => {
 
     return (
         <div className="item-container" >
-            <button id="close-btn" onClick={() => removeItem({ grpIdx, itemIdx })}>&times;</button>
-            <div className="info-container">
+            <div className="info-container" id={edit ? 'hide' : ''}>
                 <p>{item.name.length ? item.name : 'Name'}</p>
                 <p>{item.email.length ? item.email : 'Email'}</p>
                 <p>{item.comment.length ? item.comment : ''}</p>
-                <button onClick={() => setEdit(!edit)}>Edit</button>
+                <p id='edit-btn' onClick={() => setEdit(!edit)}>Edit</p>
+                
             </div>
 
 
@@ -83,6 +83,10 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx}) => {
                 <div >
                     <textarea type="text" placeholder="Comments" value={comment} ref={commentInput} onChange={(e) => handleChange(e, "comment")} />
                     <button onClick={() => handleUpdate("comment", commentInput.current.value, { grpIdx, itemIdx })}>Update</button>
+                </div>
+                <div>
+                    <p id='edit-btn' onClick={() => removeItem({ grpIdx, itemIdx })}>Delete</p>
+                    <p id='edit-btn' onClick={() => setEdit(!edit)}>Close</p>
                 </div>
             </div>
         </div>    

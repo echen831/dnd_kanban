@@ -7,7 +7,7 @@ body {
 .dnd-header {
   background-color: aquamarine;
   min-height: 50em;
-  width: 100%;
+  width: max-content;
   display: flex;
 }
 
@@ -26,7 +26,7 @@ body {
     background-color: springgreen;
     border-radius: 5px;
     padding: .5rem;
-    min-width: 11rem;
+    min-width: 15rem;
 }
 
 .group-title {
@@ -73,10 +73,6 @@ body {
   font-size: small;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
 
 button {
   cursor: pointer;
@@ -92,30 +88,39 @@ button {
 
 .item-container input {
   font-size: xx-small;
-  width: 10em;
+  width: 10rem;
 }
 
 .item-container textarea {
   font-size: xx-small;
-  width: 10em;
-  height: 6em;
+  width: 10rem;
+  height: 6rem;
 }
 
 .info-container {
   display: flex;
   flex-direction: column;
-  padding: 1em;
 }
+
+.info-container p {
+  margin: .25em;
+}
+
 
 .edit-container {
   display: flex;
   flex-direction: column;
 }
 
-#close-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
+#edit-btn {
+  font-style: italic;
+  font-size: small;
+  color: cadetblue;
+  cursor: pointer;
+}
+
+#edit-btn:hover {
+  color: rgba(95, 158, 160, 0.671);
 }
 
 
