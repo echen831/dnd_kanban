@@ -2,7 +2,7 @@
   "name": "dnd",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yourUserName.github.io/yourProjectName/",
+  "homepage": "https://yourUserName.github.io/dnd_kanban/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
