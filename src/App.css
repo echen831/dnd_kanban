@@ -4,6 +4,26 @@ body {
   padding: 0;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: .5rem;
+  background-color: coral;
+  border-radius: 5px;
+  padding: .25em;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+  font-size: x-small;
+}
+
+form input, form button {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
 .dnd-header {
   background-color: aquamarine;
   min-height: 50em;
@@ -108,6 +128,11 @@ button {
 
 
 .edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit {
   display: flex;
   flex-direction: column;
 }

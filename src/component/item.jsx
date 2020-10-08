@@ -68,7 +68,7 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx, addComment, re
 
     return (
         <div className="item-container" >
-            <div className="info-container" id={edit ? 'hide' : ''}>
+            <div className="info-container">
                 <p>{item.name.length ? item.name : 'Name'}</p>
                 <p>{item.email.length ? item.email : 'Email'}</p>
                 <ul>
@@ -79,9 +79,10 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx, addComment, re
                         </div>
                     )) : null}
                 </ul>
-                
-                <p id='edit-btn' onClick={() => setEdit(!edit)}>Edit</p>
-                
+                <div>
+                    <p id='edit-btn' onClick={() => setEdit(!edit)}>Add Comment</p>
+                    <p id='edit-btn' onClick={() => { removeItem({ grpIdx, itemIdx }); setEdit(!edit) }}>Delete</p>
+                </div>
             </div>
 
 
@@ -94,14 +95,14 @@ export const Item = ({ item, update, removeItem, grpIdx, itemIdx, addComment, re
                     <input type="text" placeholder="Email" value={email} ref={emailInput} onChange={(e) => handleChange(e, "email")}/>
                     <button onClick={() => handleUpdate("email", emailInput.current.value, { grpIdx, itemIdx })}>Update</button>
                 </div> */}
-                <div >
+                <div className='edit'>
                     <textarea type="text" placeholder="Comments" ref={commentInput} onChange={(e) => handleChange(e, "comment")} />
-                    <button onClick={()=>handleAddComment(commentInput.current.value, {grpIdx, itemIdx})}>Add Comment</button>
+                    <button onClick={()=>handleAddComment(commentInput.current.value, {grpIdx, itemIdx})}>Add</button>
                 </div>
-                <div>
+                {/* <div>
                     <p id='edit-btn' onClick={() => {removeItem({ grpIdx, itemIdx });setEdit(!edit)}}>Delete</p>
                     <p id='edit-btn' onClick={() => setEdit(!edit)}>Close</p>
-                </div>
+                </div> */}
             </div>
         </div>    
     )
