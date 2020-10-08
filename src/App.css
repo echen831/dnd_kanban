@@ -19,6 +19,16 @@ ul {
   font-size: x-small;
 }
 
+ul div p:first-child {
+  width: 10em;
+  overflow-wrap: break-word;
+}
+
+ul div p:last-child {
+  cursor: pointer;
+}
+
+
 form input, form button {
   margin-top: .25rem;
   margin-bottom: .25rem;
@@ -114,7 +124,7 @@ button {
 .item-container textarea {
   font-size: xx-small;
   width: 10rem;
-  height: 6rem;
+  height: 3rem;
 }
 
 .info-container {

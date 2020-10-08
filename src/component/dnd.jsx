@@ -68,8 +68,11 @@ export const DND = () => {
 
     const addComment = (comment, params) => {
         let newList = [...list];
-        newList[params.grpIdx].items[params.itemIdx].comments.push(comment);
-        setList(newList);
+
+        if(comment.trim() !== "") {
+            newList[params.grpIdx].items[params.itemIdx].comments.push(comment);
+            setList(newList);
+        }
     }
 
     const removeComment = (params) => {
